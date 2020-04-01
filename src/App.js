@@ -6,7 +6,7 @@ import './config/ReactotronConfig';
 import { Router } from 'react-router-dom';
 import Routes from './routes';
 import history from './services/history';
-
+import GlobalStyle from './styles/global';
 import { store, persistor } from './store';
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
       <PersistGate persistor={persistor}>
         <Router history={history}>
           <Routes />
+          <GlobalStyle />
           <ToastContainer autoClose={3000} />
         </Router>
       </PersistGate>

@@ -1,7 +1,12 @@
 import React from 'react';
 
-// import { Container } from './styles';
+import { Container, Input } from './styles';
 
 export default function dashboard() {
-  return <h1>dashboard</h1>;
+  return (
+    <Container>
+      <Input placeholder="Email" />
+      <Input placeholder="Senha" />
+    </Container>
+  );
 }
