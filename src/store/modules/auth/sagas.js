@@ -1,6 +1,7 @@
 import { call, takeLatest, all, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import api from '../../../services/api';
+import history from '../../../services/history';
 import { signInSuccess, signInFailure } from './actions';
 
 export function* signIn({ payload }) {
@@ -10,11 +11,39 @@ export function* signIn({ payload }) {
     const response = yield call(api.post, 'sessions', { email, password });
     console.tron.log(response);
     const { token } = response.data;
+
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+
     yield put(signInSuccess(token));
+
+    history.push('/dashboard');
   } catch (err) {
     yield put(signInFailure());
     toast.error('Falha na autenticação');
   }
 }
+export function* signUp({ payload }) {
+  try {
+    const { email, password, name } = payload;
+    const response = yield call(api.post, 'users', { name, email, password });
+    console.tron.log(response);
+    history.push('/');
+    toast.success('Cadastrado com sucesso');
+  } catch (err) {
+    toast.error('Falha no cadastro!');
+  }
+}
+export function setToken({ payload }) {
+  if (!payload) return;
 
-export default all([takeLatest('@auth/SIGN_IN_REQUEST', signIn)]);
+  const { token } = payload.auth;
+
+  if (token) {
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+  }
+}
+export default all([
+  takeLatest('persist/REHYDRATE', setToken),
+  takeLatest('@auth/SIGN_IN_REQUEST', signIn),
+  takeLatest('@auth/SIGN_UP_REQUEST', signUp),
+]);
