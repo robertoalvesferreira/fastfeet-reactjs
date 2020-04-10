@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import { Container } from './styles';
@@ -8,6 +8,9 @@ import { signInRequest } from '../../store/modules/auth/actions';
 
 export default function SignIn() {
   const dispatch = useDispatch();
+
+  const loading = useSelector(state => state.auth.loading);
+  console.tron.log('loading :', loading);
 
   function hadndleSubmit({ email, password }) {
     console.tron.log(email, password);
@@ -22,7 +25,7 @@ export default function SignIn() {
         <Input name="email" type="email" placeholder="exemplo@gmail.com" />
         <label>SUA SENHA</label>
         <Input name="password" type="password" placeholder="************" />
-        <button type="submit">Enviar</button>
+        <button type="submit">{loading ? 'Enviando...' : 'Enviar'}</button>
       </Form>
 
       <Link to="/register">Criar usuario!</Link>
