@@ -9,7 +9,11 @@ export function* signIn({ payload }) {
     const { email, password } = payload;
     console.tron.log('antes da chamada');
     const response = yield call(api.post, 'sessions', { email, password });
-    console.tron.log(response);
+
+    if (response.data.error) {
+      toast.error('Falha na autenticação');
+      return;
+    }
     const { token } = response.data;
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
@@ -20,6 +24,7 @@ export function* signIn({ payload }) {
   } catch (err) {
     yield put(signInFailure());
     toast.error('Falha na autenticação');
+    history.push('/');
   }
 }
 export function* signUp({ payload }) {

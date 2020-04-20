@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
-// import { Container } from './styles';
+import { Container } from './styles';
 
 export default function Grid(props) {
   const { list } = props;
@@ -9,15 +9,9 @@ export default function Grid(props) {
   if (header === undefined || list === undefined) {
     return <h1>Vazio</h1>;
   }
-
-  function teste(item) {
-    console.log(item);
-    const aux = [{ name: item.id }, { name: item.name }];
-    // return aux;
-  }
-
+  console.log(header);
   return (
-    <>
+    <Container>
       <Table>
         <thead>
           <tr>
@@ -32,9 +26,21 @@ export default function Grid(props) {
             const newObj = Object.values(item);
             return (
               <tr key={item.id}>
-                {newObj.map(function(m) {
-                  const max = Math.floor(100);
-                  return <td key={max}>{m}</td>;
+                {newObj.map(function(m, index) {
+                  // eslint-disable-next-line react/prop-types
+
+                  if (header[index].type === 'img') {
+                    return (
+                      <td key={m}>
+                        <img
+                          src="https://api.adorable.io/avatars/50/abott@adorable.png"
+                          alt="Avatar"
+                        />
+                      </td>
+                    );
+                  }
+
+                  return <td key={m}>{m}</td>;
                 })}
                 <td>
                   <button>Opcoes</button>
@@ -44,6 +50,6 @@ export default function Grid(props) {
           })}
         </tbody>
       </Table>
-    </>
+    </Container>
   );
 }

@@ -10,20 +10,21 @@ export default function Recipient() {
 
   useEffect(() => {
     async function loadRecipient() {
+      setHeader([
+        { name: 'ID', type: 'text' },
+        { name: 'Nome', type: 'text' },
+        { name: 'Street', type: 'text' },
+        { name: 'Number', type: 'text' },
+        { name: 'Complement', type: 'text' },
+        { name: 'City', type: 'text' },
+        { name: 'Cep', type: 'text' },
+        { name: 'Created', type: 'text' },
+        { name: 'Updated', type: 'text' },
+      ]);
       const response = await api.get('recipient');
       const { data } = response;
+
       setRecipients(data);
-      setHeader([
-        { name: 'ID' },
-        { name: 'Nome' },
-        { name: 'Street' },
-        { name: 'Number' },
-        { name: 'Complement' },
-        { name: 'City' },
-        { name: 'Cep' },
-        { name: 'Created' },
-        { name: 'Updated' },
-      ]);
     }
     loadRecipient();
   }, []);

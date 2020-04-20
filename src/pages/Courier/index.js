@@ -18,14 +18,12 @@ export default function courier() {
         delete name.updatedAt;
       });
 
-      console.log(data);
-
       setCouriers(data);
       setHeader([
-        { name: 'Id' },
-        { name: 'Name' },
-        { name: 'Email' },
-        { name: 'Avatar' },
+        { name: 'Id', type: 'text' },
+        { name: 'Name', type: 'text' },
+        { name: 'Email', type: 'text' },
+        { name: 'Avatar', type: 'img' },
       ]);
       console.tron.log(couriers);
     }
