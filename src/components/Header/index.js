@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Container, Content } from './styles';
+import { Container, Content, Button } from './styles';
 import logo from '../../assets/logo.svg';
 import { signOut } from '../../store/modules/auth/actions';
 import history from '../../services/history';
@@ -28,9 +28,9 @@ export default function Header() {
         </nav>
         <anside>
           <p>Admim</p>
-          <button type="button" onClick={handleSignOut}>
+          <Button type="button" onClick={handleSignOut}>
             Sair do sistema
-          </button>
+          </Button>
         </anside>
       </Content>
     </Container>

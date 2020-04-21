@@ -6,6 +6,7 @@ import Dashboard from '../pages/dashboard';
 import SignUp from '../pages/SignUp';
 import Courier from '../pages/Courier';
 import Recipient from '../pages/Recipient';
+import Courier_Register from '../pages/Courier_Register';
 
 export default function Routes() {
   return (
@@ -15,6 +16,7 @@ export default function Routes() {
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/recipient" component={Recipient} isPrivate />
       <Route path="/courier" component={Courier} isPrivate />
+      <Route path="/courier_register" component={Courier_Register} isPrivate />
     </Switch>
   );
 }

@@ -20,7 +20,7 @@ export const Container = styled.div`
     }
   }
 `;
-
+export const Button = styled.text``;
 export const Content = styled.div`
   height: 64px;
   max-width: 900px;

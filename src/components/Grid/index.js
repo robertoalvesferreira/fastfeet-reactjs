@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { Container } from './styles';
+import Button from '../Button';
+import Filter from '../Filter';
 
 export default function Grid(props) {
   const { list } = props;
@@ -10,8 +12,10 @@ export default function Grid(props) {
     return <h1>Vazio</h1>;
   }
   console.log(header);
+
   return (
     <Container>
+      <Button>Opcoes</Button>
       <Table>
         <thead>
           <tr>
@@ -28,7 +32,6 @@ export default function Grid(props) {
               <tr key={item.id}>
                 {newObj.map(function(m, index) {
                   // eslint-disable-next-line react/prop-types
-
                   if (header[index].type === 'img') {
                     return (
                       <td key={m}>
@@ -39,11 +42,10 @@ export default function Grid(props) {
                       </td>
                     );
                   }
-
                   return <td key={m}>{m}</td>;
                 })}
                 <td>
-                  <button>Opcoes</button>
+                  <Button>Opcoes</Button>
                 </td>
               </tr>
             );
