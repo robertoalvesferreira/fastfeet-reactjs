@@ -15,7 +15,7 @@ export default function Grid(props) {
 
   return (
     <Container>
-      <Button>Opcoes</Button>
+      <Button route="courier_register">Opcoes</Button>
       <Table>
         <thead>
           <tr>
@@ -45,7 +45,9 @@ export default function Grid(props) {
                   return <td key={m}>{m}</td>;
                 })}
                 <td>
-                  <Button>Opcoes</Button>
+                  <Button route="courier_edit" id={item.id}>
+                    Opcoes
+                  </Button>
                 </td>
               </tr>
             );
