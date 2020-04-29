@@ -38,7 +38,6 @@ export default function Courier_Edit(props) {
   }
 
   function handleInputChangeName(event) {
-    console.log(url);
     const aux = event.target.value;
     setCourier(prevstate => ({ ...prevstate, name: aux }));
   }

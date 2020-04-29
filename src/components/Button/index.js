@@ -8,9 +8,11 @@ export default function Button(props) {
   const { route } = props;
   const { id } = props;
   function hadndleClick() {
-    console.log(route, id);
-    // console.log('Cadastrar');
-    history.push(`${route}/${id}`);
+    if (id === undefined || id === null) {
+      history.push(route);
+    } else {
+      history.push(`${route}/${id}`);
+    }
   }
   return (
     <Container>
