@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input } from '@rocketseat/unform';
+import { toast } from 'react-toastify';
 import { Container } from './styles';
 import Img from '../../../components/Img';
 import api from '../../../services/api';
+import history from '../../../services/history';
 
 export default function Courier_Edit(props) {
   const { id } = props.match.params;
@@ -19,15 +21,22 @@ export default function Courier_Edit(props) {
       if (data.file !== null) {
         setUrl(data.file.url);
       }
-      console.log(url);
     }
     loadCourier();
   }, []);
 
   async function handleSubmit(data) {
-    const response = await api.put(`courier/${id}`, data);
-    console.log(response);
+    try {
+      const response = await api.put(`courier/${id}`, data);
+      if (response.status >= 200 && response.status < 300) {
+        toast.success('Editado com sucesso!');
+        history.push('/');
+      }
+    } catch {
+      toast.error('Erro!');
+    }
   }
+
   function handleInputChangeName(event) {
     console.log(url);
     const aux = event.target.value;
@@ -45,7 +54,7 @@ export default function Courier_Edit(props) {
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
-        <Img name="avatar_id" url={url} />
+        <Img name="avatar_id" urls={url} />
         <label htmlFor="name">Nome</label>
         <Input
           name="name"
