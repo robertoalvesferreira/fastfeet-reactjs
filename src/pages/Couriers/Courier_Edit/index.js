@@ -36,7 +36,6 @@ export default function Courier_Edit(props) {
       toast.error('Erro!');
     }
   }
-
   function handleInputChangeName(event) {
     const aux = event.target.value;
     setCourier(prevstate => ({ ...prevstate, name: aux }));

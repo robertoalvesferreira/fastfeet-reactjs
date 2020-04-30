@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import { Container } from './styles';
+import { BsFillTrashFill } from 'react-icons/bs';
+import { Container, Delete } from './styles';
 import Button from '../Button';
 import Filter from '../Filter';
 
@@ -13,6 +14,10 @@ export default function Grid(props) {
   }
   console.log(header);
 
+  function handleDelete(data) {
+    console.log(data);
+  }
+
   return (
     <Container>
       <Button route="courier_register">Opcoes</Button>
@@ -23,6 +28,7 @@ export default function Grid(props) {
               return <th key={e.name}>{e.name}</th>;
             })}
             <th>Ações</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -48,6 +54,15 @@ export default function Grid(props) {
                   <Button route="courier_edit" id={item.id}>
                     Opcoes
                   </Button>
+                </td>
+                <td>
+                  <Delete>
+                    <BsFillTrashFill
+                      size={22}
+                      color="#7159c1"
+                      onClick={() => handleDelete(item.id)}
+                    />
+                  </Delete>
                 </td>
               </tr>
             );

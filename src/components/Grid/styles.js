@@ -10,3 +10,10 @@ export const Container = styled.div`
     background: #eee;
   }
 `;
+export const Delete = styled.div`
+  height: 4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
