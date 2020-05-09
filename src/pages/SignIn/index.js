@@ -13,6 +13,7 @@ export default function SignIn() {
   console.tron.log('loading :', loading);
 
   function hadndleSubmit({ email, password }) {
+    // commit teste
     console.tron.log(email, password);
     dispatch(signInRequest(email, password));
   }
